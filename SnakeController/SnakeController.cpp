@@ -72,8 +72,11 @@ void Controller::receive(std::unique_ptr<Event> e)
         Segment const& currentHead = m_segments.front();
 
         Segment newHead;
-        newHead.x = currentHead.x + ((m_currentDirection & 0b01) ? (m_currentDirection & 0b10) ? 1 : -1 : 0);
-        newHead.y = currentHead.y + (not (m_currentDirection & 0b01) ? (m_currentDirection & 0b10) ? 1 : -1 : 0);
+        int firstValue = 1;
+        int secondvalue=-1;
+        int thirdValue=0;
+        newHead.x = currentHead.x + ((m_currentDirection & 0b01) ? (m_currentDirection & 0b10) ? firstValue : secondvalue : thirdValue);
+        newHead.y = currentHead.y + (not (m_currentDirection & 0b01) ? (m_currentDirection & 0b10) ? firstValue : secondvalue: thirdValue);
         newHead.ttl = currentHead.ttl;
 
         bool lost = false;
@@ -192,5 +195,6 @@ void Controller::receive(std::unique_ptr<Event> e)
         }
     }
 }
+
 
 } // namespace Snake
